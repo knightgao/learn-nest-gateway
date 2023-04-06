@@ -57,6 +57,9 @@ devDependencies:
   eslint-plugin-prettier:
     specifier: ^4.0.0
     version: 4.0.0(eslint-config-prettier@8.3.0)(eslint@8.0.1)(prettier@2.3.2)
+  fastify:
+    specifier: ^4.15.0
+    version: 4.15.0
   jest:
     specifier: 29.3.1
     version: 29.3.1(@types/node@18.11.18)(ts-node@10.0.0)
