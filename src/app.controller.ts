@@ -1,5 +1,6 @@
 import { Controller, Get, Version, VERSION_NEUTRAL } from '@nestjs/common';
 import { AppService } from './app.service';
+import { BusinessException } from 'src/common/exceptions/business.exception';
 
 @Controller({
   path: 'user',
@@ -20,5 +21,18 @@ export class AppController {
   @Version('2')
   findAll2() {
     return 'i am new one';
+  }
+
+  // 业务错误的场景  http://localhost:3000/user/findBusinessError
+  @Get('findBusinessError')
+  @Version([VERSION_NEUTRAL, '1'])
+  findBusinessError() {
+    const a: any = {};
+    try {
+      console.log(a.b.c);
+    } catch (error) {
+      throw new BusinessException('你这个参数错了');
+    }
+    return null;
   }
 }
