@@ -8,6 +8,7 @@ import { VERSION_NEUTRAL, VersioningType } from '@nestjs/common';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { AllExceptionsFilter } from './common/exceptions/base.exception.filter';
 import { HttpExceptionFilter } from './common/exceptions/http.exception.filter';
+import { generateDocument } from './doc';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -27,6 +28,9 @@ async function bootstrap() {
   // 异常过滤
   app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter());
 
+  // 创建文档
+  generateDocument(app);
   await app.listen(3000);
 }
+
 bootstrap();
